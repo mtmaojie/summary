@@ -1,0 +1,77 @@
+i=0;
+len=`cat tem | wc -l`
+#arr=($(len))
+arr=()
+echo "len is  $len"
+for line in `cat tem`
+do
+
+   echo $line;
+   ((i++))
+   echo $i;
+done
+
+
+for i in `seq 1 10`
+do
+        echo $i
+        arr[$i]=$i
+        echo "arr is ${arr[$i]}"
+done
+
+echo "xxxxxxxxxxxxxxxxx"
+
+
+path=$1
+path=$path"*"
+echo "patch is $path"
+j=0
+i=0
+cat tem | while read line
+do
+echo "line is $line "
+        i=0
+        cat tem2 | while read line2
+        do
+                if [ $i -eq $j ]; then
+                        echo "line is $line"
+                        echo "line2 is $line2 "
+                        sed -i "s/$line/$line2/g" ` grep -w $line -rl  $path`
+                fi
+                ((i++))
+        done
+((j++))
+done
+
+
+
+j=0
+arr2=()
+cat tem | while read line
+do
+echo $line
+arr2[$j]=$line
+echo "arr2[$j] is ${arr2[$j]}"
+((j++))
+done
+
+echo "arr2[0] is ${arr2[0]}"
+
+j=0
+arr3=()
+cat tem2 | while read line
+do
+echo $line
+arr3[$j]=$line
+echo "arr2[$j] is ${arr2[$j]}"
+echo "arr3[$j] is ${arr3[$j]}"
+((j++))
+done
+
+
+for((i=0;i<${#arr2[@]};i++)) do
+#${#array[@]}获取数组长度用于循环
+echo ${arr2[i]};
+done;
+
+echo "lasttttttttttttt"
