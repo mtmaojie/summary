@@ -36,6 +36,7 @@ echo "line is $line "
                 if [ $i -eq $j ]; then
                         echo "line is $line"
                         echo "line2 is $line2 "
+                        #全局递归替换关键字
                         sed -i "s/$line/$line2/g" ` grep -w $line -rl  $path`
                 fi
                 ((i++))
