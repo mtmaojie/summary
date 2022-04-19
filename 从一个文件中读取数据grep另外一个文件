@@ -1,0 +1,19 @@
+i=0;
+for line in `cat mtgpu_sym`
+do
+
+        echo $line;
+        grep -w $line all_sym
+        if [ $? -eq 0 ]
+        then
+                echo "字符串$line yes 文件all_sym中"
+        else
+                echo "字符串$line no 文件all_sym中"
+                echo $line >>  miss_sym
+                #exit 1
+
+
+        fi
+   ((i++))
+   echo $i;
+done
